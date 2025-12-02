@@ -365,7 +365,7 @@ export default function SharedTablePage() {
         {isIntroLoading ? (
           <LoadingOverlay message="Loading shared table..." type="wave" />
         ) : (
-          <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+          <div className="min-h-[100dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <div className="text-center space-y-4">
               <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mx-auto"></div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Loading...</p>
@@ -444,8 +444,8 @@ export default function SharedTablePage() {
         </div>
       </nav>
 
-      <main className="pt-[56px]">
-        <div className="container mx-auto px-4 py-8 mt-[10%]">
+      <main className="fixed inset-0 bg-gray-50 dark:bg-[#0a0a0a] pt-[56px] pb-24 overflow-y-auto">
+        <div className="container mx-auto px-4 py-8 mt-[5%]">
           {/* Data Table */}
           <DataTable
             rows={rowsWithDistances}

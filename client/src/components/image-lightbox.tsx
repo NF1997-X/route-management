@@ -68,8 +68,8 @@ export function ImageLightbox({
           enableSwipe: true,
           enableDrag: true,
           counter: true,
-          appendSubHtmlTo: ".lg-item",
-          subHtmlSelectorRelative: true,
+          appendSubHtmlTo: ".lg-sub-html",
+          subHtmlSelectorRelative: false,
         } as any);
 
         galleryRef.current = gallery;
@@ -131,7 +131,7 @@ export function ImageLightbox({
           key={index}
           href={media.url}
           data-src={media.url}
-          data-sub-html={`<h4>${media.caption || `Image ${index + 1}`}</h4>${location ? `<p>${location}</p>` : ''}`}
+          data-sub-html={`<div class="text-center"><h4 class="text-lg font-semibold mb-1">${media.caption || `Image ${index + 1}`}</h4>${location ? `<p class="text-sm text-gray-400">${location}</p>` : ''}</div>`}
         >
           <img alt={media.caption || `Image ${index + 1}`} src={media.url} />
         </a>

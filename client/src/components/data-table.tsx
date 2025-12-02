@@ -798,7 +798,6 @@ export function DataTable({
                 variant="outline" 
                 className="h-8 w-8 p-0 pagination-button rounded-lg"
                 data-testid="sort-trigger"
-                title="Sort"
               >
                 {sortState ? (
                   sortState.direction === 'asc' ? <ArrowUp className="w-4 h-4" /> : <ArrowDown className="w-4 h-4" />
@@ -919,9 +918,6 @@ export function DataTable({
                   variant="outline" 
                   className="h-8 w-8 p-0 pagination-button rounded-lg relative" 
                   data-testid="combined-filter-trigger"
-                  title={(filterValue.length > 0 || deliveryFilterValue.length > 0) 
-                    ? `Active filters: ${filterValue.length + deliveryFilterValue.length}` 
-                    : "Filters"}
                 >
                   <Filter className="w-4 h-4" />
                   {(filterValue.length > 0 || deliveryFilterValue.length > 0) && (

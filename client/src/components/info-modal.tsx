@@ -9,6 +9,7 @@ import { SiGooglemaps, SiWaze } from "react-icons/si";
 import { MiniMap } from "@/components/mini-map";
 import { SlidingDescription } from "@/components/sliding-description";
 import { EditableDescriptionList } from "@/components/editable-description-list";
+import { QrCodeUploadModal } from "@/components/qr-code-upload-modal";
 import QrScanner from "qr-scanner";
 
 interface InfoModalProps {
@@ -46,6 +47,7 @@ export function InfoModal({ info, rowId, code, route, location, latitude, longit
   const [showActionsMenu, setShowActionsMenu] = useState(false);
   const [qrScanning, setQrScanning] = useState(false);
   const [scanningDots, setScanningDots] = useState("");
+  const [showQrUploadModal, setShowQrUploadModal] = useState(false);
   
   // Swipe down gesture state
   const [touchStart, setTouchStart] = useState(0);
@@ -521,17 +523,43 @@ export function InfoModal({ info, rowId, code, route, location, latitude, longit
             <div className="bg-transparent backdrop-blur-sm rounded-xl p-4 space-y-3 shadow-sm">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-purple-500 dark:bg-purple-400 rounded-full"></div>
-                <h4 className="font-semibold text-purple-600 dark:text-purple-400" style={{fontSize: '10px'}}><QrCode className="w-4 h-4 inline mr-1" />QR Code URL</h4>
+                <h4 className="font-semibold text-purple-600 dark:text-purple-400" style={{fontSize: '10px'}}><QrCode className="w-4 h-4 inline mr-1" />QR Code</h4>
               </div>
-              <div className="space-y-2">
-                <Input
-                  value={currentData.qrCode}
-                  onChange={(e) => setCurrentData(prev => ({ ...prev, qrCode: e.target.value }))}
-                  placeholder="Enter QR code image URL..."
+              <div className="space-y-3">
+                {/* Current QR Code Display */}
+                {currentData.qrCode && (
+                  <div className="border rounded-lg p-3 bg-purple-50/30 dark:bg-purple-950/20">
+                    <Label style={{fontSize: '9px'}} className="mb-2 block text-purple-600 dark:text-purple-400">Current QR Code:</Label>
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={currentData.qrCode}
+                        alt="Current QR Code"
+                        className="w-20 h-20 object-contain rounded border border-purple-200 dark:border-purple-800"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                      <p className="text-muted-foreground break-all flex-1" style={{fontSize: '9px'}}>
+                        {currentData.qrCode}
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Upload/Change Button */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowQrUploadModal(true)}
+                  className="w-full bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/30 text-purple-600 dark:text-purple-400"
                   style={{fontSize: '10px'}}
-                  data-testid="input-qr-code"
-                />
-                <p className="text-muted-foreground" style={{fontSize: '10px'}}>URL to the QR code image</p>
+                >
+                  <QrCode className="w-4 h-4 mr-2" />
+                  {currentData.qrCode ? 'Change QR Code' : 'Add QR Code'}
+                </Button>
+                <p className="text-muted-foreground text-center" style={{fontSize: '9px'}}>
+                  Upload QR code image or insert URL
+                </p>
               </div>
             </div>
           )}
@@ -1071,6 +1099,17 @@ export function InfoModal({ info, rowId, code, route, location, latitude, longit
           </Alert>
         </div>
       )}
+
+      {/* QR Code Upload Modal */}
+      <QrCodeUploadModal
+        open={showQrUploadModal}
+        onOpenChange={setShowQrUploadModal}
+        onSave={(qrCodeUrl) => {
+          setCurrentData(prev => ({ ...prev, qrCode: qrCodeUrl }));
+          setShowQrUploadModal(false);
+        }}
+        existingQrCode={currentData.qrCode}
+      />
     </Dialog>
   );
 }

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Image, ImageOff } from "lucide-react";
+import { Image, ImageOff, Loader2 } from "lucide-react";
 import { MediaWithCaption } from "@shared/schema";
 
 interface ImageIconButtonProps {
@@ -13,6 +13,8 @@ export function ImageIconButton({
   rowId,
 }: ImageIconButtonProps) {
   const hasImages = images && images.length > 0;
+  const [isLoading, setIsLoading] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
     let gallery: any = null;
@@ -20,6 +22,23 @@ export function ImageIconButton({
     const loadLightGallery = async () => {
       if (typeof window !== "undefined" && hasImages) {
         try {
+          setIsLoading(true);
+          
+          // Preload all images first
+          const imagePromises = images
+            .filter(media => media.type !== 'video')
+            .map(media => {
+              return new Promise((resolve, reject) => {
+                const img = new window.Image();
+                img.onload = () => resolve(media.url);
+                img.onerror = () => reject(media.url);
+                img.src = media.url;
+              });
+            });
+          
+          await Promise.all(imagePromises).catch(err => console.warn("Some images failed to preload:", err));
+          setImagesLoaded(true);
+          
           await new Promise((resolve) => setTimeout(resolve, 150));
 
           const galleryElement = document.getElementById(
@@ -84,10 +103,15 @@ export function ImageIconButton({
               color: '3B82F6',
               controls: 1,
               playsinline: 1
-            }
+            },
+            appendSubHtmlTo: '.lg-sub-html',
+            subHtmlSelectorRelative: false,
           });
+          
+          setIsLoading(false);
         } catch (error) {
           console.error("Failed to load LightGallery:", error);
+          setIsLoading(false);
         }
       }
     };
@@ -113,7 +137,7 @@ export function ImageIconButton({
           <a
             href="javascript:void(0)"
             data-src={images[0].url}
-            data-sub-html={images[0].caption}
+            data-sub-html={`<div class="text-center"><h4 class="text-lg font-semibold mb-1">${images[0].caption || 'Image 1'}</h4></div>`}
             data-video={images[0].type === 'video' ? JSON.stringify({ 
               source: [{ 
                 src: images[0].url, 
@@ -131,7 +155,11 @@ export function ImageIconButton({
             title={`${images.length} image(s)`}
             data-testid={`image-button-${rowId}`}
           >
-            <Image className="w-4 h-4" />
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Image className="w-4 h-4" />
+            )}
           </a>
           
           {/* Remaining images hidden */}
@@ -167,7 +195,7 @@ export function ImageIconButton({
                 key={index + 1}
                 href="javascript:void(0)"
                 data-src={media.url}
-                data-sub-html={media.caption}
+                data-sub-html={`<div class="text-center"><h4 class="text-lg font-semibold mb-1">${media.caption || `Image ${index + 2}`}</h4></div>`}
                 data-video={videoData}
                 data-poster={isVideo && media.thumbnail ? media.thumbnail : undefined}
                 className="hidden"

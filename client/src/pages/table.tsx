@@ -1085,7 +1085,7 @@ export default function TablePage() {
         {isIntroLoading ? (
           <LoadingOverlay message="Loading table data..." type="wave" />
         ) : (
-          <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+          <div className="min-h-[100dvh] flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
             <div className="text-center space-y-4">
               <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-500 border-t-transparent mx-auto"></div>
               <p className="text-sm text-slate-600 dark:text-slate-400">Loading...</p>
@@ -1153,8 +1153,8 @@ export default function TablePage() {
           onSetTheme={setTheme}
         />
       </div>
-      <main className="min-h-screen bg-gray-50 dark:bg-black pt-[72px] pb-20">
-        <div className="w-full flex justify-center mt-[10%]">
+      <main className="fixed inset-0 bg-gray-50 dark:bg-[#0a0a0a] pt-[72px] pb-24 overflow-y-auto">
+        <div className="w-full flex justify-center mt-[5%]">
           <div className="max-w-3xl w-full px-6 py-8" data-testid="table-page">
           {/* Header Section - Carousel with Pages */}
           <div className="mb-8 relative animate-in fade-in slide-in-from-top-2 duration-600 delay-300">
