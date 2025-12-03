@@ -1110,7 +1110,7 @@ export default function TablePage() {
         </div>
       )}
       
-      <div id="zoomable-nav" className="animate-in fade-in duration-500">
+      <div className="animate-in fade-in duration-500">
         <Navigation 
           editMode={editMode}
           onEditModeRequest={handleEditModeRequest}
@@ -1947,9 +1947,7 @@ export default function TablePage() {
       </main>
       
       {/* Footer */}
-      <div id="zoomable-footer">
-        <Footer editMode={editMode} />
-      </div>
+      <Footer editMode={editMode} />
 
       {/* Zoom Control */}
       <ZoomControl 
