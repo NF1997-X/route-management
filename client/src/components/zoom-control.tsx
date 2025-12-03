@@ -28,11 +28,16 @@ export function ZoomControl({ isOpen = false, onClose, onZoomChange }: ZoomContr
   const applyZoom = (zoomLevel: number) => {
     const scale = zoomLevel / 100;
     
-    // Apply zoom to content container only - visual scale without changing layout
+    // Apply zoom to content container - adjust width to prevent overflow
     const zoomableContent = document.getElementById('zoomable-content');
     if (zoomableContent) {
       (zoomableContent as HTMLElement).style.transform = `scale(${scale})`;
       (zoomableContent as HTMLElement).style.transformOrigin = "top center";
+      
+      // Adjust width inversely to scale to prevent overflow
+      const adjustedWidth = 100 / scale;
+      (zoomableContent as HTMLElement).style.width = `${adjustedWidth}%`;
+      (zoomableContent as HTMLElement).style.maxWidth = `${adjustedWidth}%`;
       
       // Store zoom level in localStorage for persistence
       localStorage.setItem('appZoomLevel', zoomLevel.toString());

@@ -321,7 +321,7 @@ export default function CustomTableList() {
           </div>
         </div>
       </nav>
-      <main className="fixed inset-0 bg-transparent pt-[72px] pb-24 overflow-y-auto">
+      <main className="fixed inset-0 bg-white dark:bg-black pt-[72px] pb-24 overflow-y-auto">
         <div className="w-full flex justify-center mt-[5%]">
         <div className="max-w-3xl w-full px-6">
         {/* Action Bar */}

@@ -354,7 +354,7 @@ export default function CustomTableView() {
         </div>
       </nav>
 
-      <main className="fixed inset-0 bg-transparent pt-[56px] pb-24 overflow-y-auto">
+      <main className="fixed inset-0 bg-white dark:bg-black pt-[56px] pb-24 overflow-y-auto">
         <div className="w-full flex justify-center mt-[5%]">
         <div className="max-w-7xl w-full px-4 py-8">
           {/* Data Table with all interactive features enabled */}

@@ -778,11 +778,11 @@ export function DataTable({
 
   return (
     <div
-      className="border-2 border-gray-700 dark:border-blue-500/30 shadow-2xl table-container my-10 rounded-xl overflow-hidden bg-transparent"
+      className="border border-gray-200/60 dark:border-gray-800/60 shadow-2xl shadow-black/10 dark:shadow-black/30 table-container my-10 rounded-2xl overflow-hidden bg-white dark:bg-gray-900/90"
       data-testid="data-table"
     >
       {/* Single Row: Filter/Sort/Search + Action Buttons */}
-      <div className="flex justify-between items-center px-6 py-3 border-b border-gray-700 dark:border-blue-500/30 ocean:border-cyan-500/40 bg-gray-700 dark:bg-transparent text-gray-300 dark:text-inherit shadow-lg transition-all duration-500">
+      <div className="flex justify-between items-center px-6 py-3 border-b border-gray-200/60 dark:border-gray-800/60 bg-gradient-to-b from-gray-50/50 to-white/50 dark:from-gray-800/30 dark:to-gray-900/30 backdrop-blur-sm shadow-sm transition-all duration-500">
         <div className="flex items-center gap-2 flex-shrink-0">
           {/* Custom Toolbar Content */}
           {customToolbarContent && (
@@ -1069,9 +1069,9 @@ export function DataTable({
       </div>
       {/* Active Filters Display */}
       {(searchTerm || filterValue.length > 0 || deliveryFilterValue.length > 0) && (
-        <div className="px-6 py-2 border-b border-border/20 bg-gradient-to-r from-blue-500/5 via-transparent to-blue-500/5 dark:from-blue-500/5 dark:via-transparent dark:to-blue-500/5">
+        <div className="px-6 py-2 border-b border-gray-200/60 dark:border-gray-800/60 bg-gradient-to-b from-gray-50/50 to-white/50 dark:from-gray-800/30 dark:to-gray-900/30 backdrop-blur-sm">
           <div className="flex flex-wrap items-center gap-1">
-            <span className="text-muted-foreground font-medium text-xs">Active:</span>
+            <span className="text-gray-700 dark:text-gray-300 font-semibold text-xs">Active:</span>
             {searchTerm && (
               <div className="flex items-center gap-0.5 px-2 py-0.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs">
                 <Search className="w-2.5 h-2.5" />
@@ -1133,7 +1133,7 @@ export function DataTable({
       )}
       <div className="w-full">
         <DragDropContext onDragEnd={handleDragEnd}>
-          <div className="border border-gray-700 dark:border-blue-500/20 overflow-hidden flex flex-col">
+          <div className="border border-gray-200/40 dark:border-gray-800/40 overflow-hidden flex flex-col">
             {/* Scrollable Container for Header, Body, Footer */}
             <div className="overflow-x-auto overflow-y-auto max-h-[700px]">
               <Table className="min-w-full">
@@ -1159,7 +1159,7 @@ export function DataTable({
                           <TableHead
                             ref={provided.innerRef}
                             {...provided.draggableProps}
-                            className="px-4 py-2 text-center table-header-footer-12px font-semibold tracking-wide sticky top-0 whitespace-nowrap border-transparent text-blue-600 dark:text-blue-400"
+                            className="px-4 py-2 text-center table-header-footer-12px font-semibold tracking-wide sticky top-0 whitespace-nowrap border-transparent text-blue-800 dark:text-blue-300"
                             style={{
                               textAlign: "center",
                               textDecoration: "normal",
@@ -1802,7 +1802,7 @@ export function DataTable({
 
           {/* Pagination Controls */}
           {!disablePagination && (
-            <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-3 border-t border-gray-700 dark:border-blue-500/30 ocean:border-cyan-500/40 bg-gray-700 dark:bg-transparent text-gray-300 dark:text-inherit shadow-lg transition-all duration-500">
+            <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-3 border-t border-gray-200/60 dark:border-gray-800/60 bg-gradient-to-b from-white/50 to-gray-50/50 dark:from-gray-900/30 dark:to-gray-800/30 backdrop-blur-sm shadow-sm transition-all duration-500">
               
               <div className="flex items-center justify-between gap-1 w-full">
                 {/* Left: Entries per page selector with showing text */}
@@ -1819,7 +1819,7 @@ export function DataTable({
                       <SelectItem value="999999">{filteredRowsCount}</SelectItem>
                     </SelectContent>
                   </Select>
-                  <span className="whitespace-nowrap flex-shrink-0">
+                  <span className="whitespace-nowrap flex-shrink-0 font-semibold text-blue-800 dark:text-blue-300">
                     Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, filteredRowsCount)} of {filteredRowsCount} items in {totalPages} pages
                   </span>
                 </div>

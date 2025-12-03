@@ -1156,7 +1156,7 @@ export default function TablePage() {
           onSetTheme={setTheme}
         />
       </div>
-      <main className="fixed inset-0 bg-transparent pt-[72px] pb-24 overflow-y-auto">
+      <main className="fixed inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-black pt-[72px] pb-24 overflow-y-auto">
         <div className="w-full flex justify-center mt-[5%] min-h-full">
           <div id="zoomable-content" className="max-w-3xl w-full px-6 py-8 origin-top" data-testid="table-page">
           {/* Header Section - Carousel with Pages */}

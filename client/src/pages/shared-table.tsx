@@ -444,7 +444,7 @@ export default function SharedTablePage() {
         </div>
       </nav>
 
-      <main className="fixed inset-0 bg-transparent pt-[56px] pb-24 overflow-y-auto">
+      <main className="fixed inset-0 bg-white dark:bg-black pt-[56px] pb-24 overflow-y-auto">
         <div className="container mx-auto px-4 py-8 mt-[5%]">
           {/* Data Table */}
           <DataTable
