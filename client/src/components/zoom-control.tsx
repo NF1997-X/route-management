@@ -2,6 +2,39 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ZoomIn, ZoomOut, Maximize2, X } from "lucide-react";
 
+// Add custom CSS for slider thumb
+const sliderStyles = `
+  .slider-thumb::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgb(59 130 246);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .slider-thumb::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgb(59 130 246);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .slider-thumb::-webkit-slider-thumb:hover {
+    background: rgb(37 99 235);
+    transform: scale(1.1);
+  }
+  
+  .slider-thumb::-moz-range-thumb:hover {
+    background: rgb(37 99 235);
+    transform: scale(1.1);
+  }
+`;
+
 interface ZoomControlProps {
   isOpen?: boolean;
   onClose?: () => void;
@@ -48,6 +81,17 @@ export function ZoomControl({ isOpen = false, onClose, onZoomChange }: ZoomContr
     }
   };
 
+  // Inject styles
+  useEffect(() => {
+    const styleId = 'zoom-slider-styles';
+    if (!document.getElementById(styleId)) {
+      const styleElement = document.createElement('style');
+      styleElement.id = styleId;
+      styleElement.textContent = sliderStyles;
+      document.head.appendChild(styleElement);
+    }
+  }, []);
+
   // Click outside to close
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -67,13 +111,20 @@ export function ZoomControl({ isOpen = false, onClose, onZoomChange }: ZoomContr
 
   if (!isOpen) return null;
 
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newZoom = parseInt(e.target.value);
+    setZoom(newZoom);
+    applyZoom(newZoom);
+    onZoomChange?.(newZoom);
+  };
+
   return (
     <div
       ref={controlRef}
-      className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-blue-500/30 dark:border-blue-400/30 rounded-full shadow-lg px-4 py-2"
+      className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-2 border-blue-500/30 dark:border-blue-400/30 rounded-full shadow-lg px-6 py-3"
       style={{ userSelect: 'none' }}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <Button
           variant="ghost"
           size="sm"
@@ -85,9 +136,22 @@ export function ZoomControl({ isOpen = false, onClose, onZoomChange }: ZoomContr
           <ZoomOut className="h-4 w-4" />
         </Button>
         
-        <span className="text-xs font-semibold text-gray-700 dark:text-gray-300 min-w-[50px] text-center">
-          {zoom}%
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 min-w-[35px]">
+            {zoom}%
+          </span>
+          
+          <input
+            type="range"
+            min="50"
+            max="200"
+            step="10"
+            value={zoom}
+            onChange={handleSliderChange}
+            className="w-40 h-2 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:hover:bg-blue-600 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500 [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:hover:bg-blue-600"
+            title={`Zoom: ${zoom}%`}
+          />
+        </div>
         
         <Button
           variant="ghost"
