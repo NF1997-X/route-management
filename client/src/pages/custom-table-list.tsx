@@ -344,7 +344,7 @@ export default function CustomTableList() {
         </div>
 
         {/* Location Selection Table */}
-        <div className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl overflow-hidden mb-8">
+        <div className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl overflow-hidden mb-8 w-full max-w-5xl">
           {/* Header with Search */}
           <div className="p-6 pb-4 border-b border-gray-300 dark:border-white/10">
             <h2 className="text-sm font-semibold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
@@ -365,8 +365,8 @@ export default function CustomTableList() {
 
           {/* Table with Scroll */}
           <div className="overflow-x-auto overflow-y-auto max-h-[600px] scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
-            <table className="w-full min-w-[600px]">
-              <thead className="bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-800/50 dark:to-slate-900/50 sticky top-0 z-10">
+            <table className="w-full min-w-[600px] bg-transparent dark:bg-transparent">
+              <thead className="bg-transparent dark:bg-transparent sticky top-0 z-10">
                 <tr className="border-b-2 border-gray-300 dark:border-white/10">
                   <th className="px-3 py-2 text-center text-xs font-semibold whitespace-nowrap">
                     <Checkbox
@@ -432,7 +432,7 @@ export default function CustomTableList() {
           </div>
 
           {/* Footer */}
-          <div className="p-4 bg-gray-400 dark:from-slate-800/50 dark:to-slate-900/50 border-t border-gray-300 dark:border-white/10">
+          <div className="p-4 bg-gray-400 dark:bg-transparent border-t border-gray-300 dark:border-white/10">
             <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">
               Showing {filteredRows.length} of {tableRows.length} location(s)
             </div>

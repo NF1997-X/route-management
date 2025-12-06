@@ -778,11 +778,11 @@ export function DataTable({
 
   return (
     <div
-      className="border border-border shadow-md table-container my-10 rounded-2xl overflow-hidden bg-card"
+      className="border border-gray-400 dark:border-[#36454F] shadow-md table-container my-10 rounded-2xl overflow-hidden bg-card"
       data-testid="data-table"
     >
       {/* Single Row: Filter/Sort/Search + Action Buttons */}
-      <div className="flex justify-between items-center px-6 py-3 border-b border-border bg-muted shadow-sm transition-all duration-500">
+      <div className="flex justify-between items-center px-6 py-3 border-b border-border bg-gray-400 dark:bg-transparent shadow-sm transition-all duration-500">
         {/* Left Side: Sort, Filter, and Action Buttons */}
         <div className="flex items-center gap-2 flex-shrink-0">
           {/* Custom Toolbar Content */}
@@ -1138,7 +1138,7 @@ export function DataTable({
             {/* Scrollable Container for Header, Body, Footer */}
             <div className="overflow-x-auto overflow-y-auto max-h-[700px]">
               <Table className="min-w-full">
-                <TableHeader className="sticky top-0 z-20 [&_tr]:border-b [&_tr]:border-border bg-muted">
+                <TableHeader className="sticky top-0 z-20 [&_tr]:border-b [&_tr]:border-border bg-gray-300 dark:bg-gray-800">
               <Droppable
                 droppableId="columns"
                 direction="horizontal"
@@ -1750,8 +1750,8 @@ export function DataTable({
             </Droppable>
             
             {/* Table Footer */}
-            <tfoot className="sticky bottom-0 z-20 shadow-[inset_0_2px_4px_rgba(50,50,50,0.3)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] bg-gray-700 dark:bg-gray-800">
-              <TableRow className="border-t border-gray-600 dark:border-blue-500/20">
+            <tfoot className="sticky bottom-0 z-20 shadow-[inset_0_2px_4px_rgba(50,50,50,0.3)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] bg-gray-300 dark:bg-gray-800">
+              <TableRow className="border-t border-border dark:border-blue-500/20">
                 {visibleColumns.map((column, index) => (
                   <TableCell
                     key={column.id}
@@ -1803,7 +1803,7 @@ export function DataTable({
 
           {/* Pagination Controls */}
           {!disablePagination && (
-            <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-3 border-t border-gray-600 dark:border-gray-800/60 bg-gray-800 dark:bg-transparent shadow-sm transition-all duration-500">
+            <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-3 border-t border-gray-400 dark:border-t-[#36454F] bg-gray-400 dark:bg-transparent shadow-sm transition-all duration-500">
               
               <div className="flex items-center justify-between gap-1 w-full">
                 {/* Left: Entries per page selector with showing text */}
