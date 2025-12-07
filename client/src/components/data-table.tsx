@@ -915,16 +915,18 @@ export function DataTable({
           <div className="w-auto">
             <Popover>
               <PopoverTrigger asChild>
-                <Button 
-                  variant="outline" 
-                  className="h-8 w-8 p-0 pagination-button rounded-lg relative border border-border" 
-                  data-testid="combined-filter-trigger"
-                >
-                  <Filter className="w-4 h-4 text-muted-foreground" />
-                  {(filterValue.length > 0 || deliveryFilterValue.length > 0) && (
-                    <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full w-2.5 h-2.5 border-2 border-background z-50"></span>
-                  )}
-                </Button>
+                <MobileTooltip content="Filter Routes & Deliveries">
+                  <Button 
+                    variant="outline" 
+                    className="h-8 w-8 p-0 pagination-button rounded-lg relative border border-border" 
+                    data-testid="combined-filter-trigger"
+                  >
+                    <Filter className="w-4 h-4 text-muted-foreground" />
+                    {(filterValue.length > 0 || deliveryFilterValue.length > 0) && (
+                      <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full w-2.5 h-2.5 border-2 border-background z-50"></span>
+                    )}
+                  </Button>
+                </MobileTooltip>
               </PopoverTrigger>
             <PopoverContent className="w-64 p-0" align="start">
               <div className="p-3 btn-glass rounded-lg">
@@ -1667,12 +1669,16 @@ export function DataTable({
                                                 const daysSinceBase = Math.floor((currentDate.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24));
                                                 const isAlt1Day = daysSinceBase % 2 === 1;
                                                 return (
-                                                  <div className={`w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs font-bold ${!isAlt1Day ? 'opacity-60' : ''}`}>
-                                                    {isAlt1Day ? '✓' : '✗'}
-                                                  </div>
+                                                  <>
+                                                    <div className={`w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs font-bold ${!isAlt1Day ? 'opacity-60' : ''}`}>
+                                                      {isAlt1Day ? '✓' : '✗'}
+                                                    </div>
+                                                    <span className={`text-xs font-medium ${isAlt1Day ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-400 dark:text-gray-500'}`}>
+                                                      Alt 1 (Even)
+                                                    </span>
+                                                  </>
                                                 );
                                               })()}
-                                              <span className="text-yellow-600 dark:text-yellow-400 text-xs font-medium">Alt 1 (Even)</span>
                                             </div>
                                           </SelectItem>
                                           <SelectItem value="alt2">
@@ -1684,12 +1690,16 @@ export function DataTable({
                                                 const daysSinceBase = Math.floor((currentDate.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24));
                                                 const isAlt2Day = daysSinceBase % 2 === 0;
                                                 return (
-                                                  <div className={`w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs font-bold ${!isAlt2Day ? 'opacity-60' : ''}`}>
-                                                    {isAlt2Day ? '✓' : '✗'}
-                                                  </div>
+                                                  <>
+                                                    <div className={`w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xs font-bold ${!isAlt2Day ? 'opacity-60' : ''}`}>
+                                                      {isAlt2Day ? '✓' : '✗'}
+                                                    </div>
+                                                    <span className={`text-xs font-medium ${isAlt2Day ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-400 dark:text-gray-500'}`}>
+                                                      Alt 2 (Odd)
+                                                    </span>
+                                                  </>
                                                 );
                                               })()}
-                                              <span className="text-yellow-600 dark:text-yellow-400 text-xs font-medium">Alt 2 (Odd)</span>
                                             </div>
                                           </SelectItem>
                                           <SelectItem value="inactive">
