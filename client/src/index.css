@@ -170,7 +170,7 @@ textarea {
 @tailwind utilities;
 
 :root {
-  /* Default: Dark Theme */
+  /* Default: Dark Theme - inspired by Ht.git */
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(0, 0%, 100%);
   --card: hsl(0, 0%, 6%);
@@ -221,41 +221,78 @@ textarea {
 }
 
 .light {
-  /* Light Theme - Standard White */
-  --background: hsl(0, 0%, 100%);
-  --foreground: hsl(0, 0%, 0%);
-  --card: hsl(0, 0%, 98%);
-  --card-foreground: hsl(0, 0%, 0%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(0, 0%, 0%);
-  --primary: hsl(217, 91%, 60%);
+  /* Light Theme - Dark Grey Colors */
+  --background: hsl(0, 0%, 85%);
+  --foreground: hsl(0, 0%, 20%);
+  --card: hsl(0, 0%, 75%);
+  --card-foreground: hsl(0, 0%, 20%);
+  --popover: hsl(0, 0%, 75%);
+  --popover-foreground: hsl(0, 0%, 20%);
+  --primary: hsl(221, 65%, 45%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(0, 0%, 96%);
-  --secondary-foreground: hsl(0, 0%, 0%);
-  --muted: hsl(0, 0%, 96%);
-  --muted-foreground: hsl(0, 0%, 45%);
-  --accent: hsl(0, 0%, 96%);
-  --accent-foreground: hsl(0, 0%, 0%);
-  --destructive: hsl(0, 70%, 50%);
+  --secondary: hsl(0, 0%, 70%);
+  --secondary-foreground: hsl(0, 0%, 15%);
+  --muted: hsl(0, 0%, 65%);
+  --muted-foreground: hsl(0, 0%, 35%);
+  --accent: hsl(0, 0%, 70%);
+  --accent-foreground: hsl(0, 0%, 15%);
+  --destructive: hsl(0, 60%, 45%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(0, 0%, 90%);
-  --input: hsl(0, 0%, 90%);
-  --ring: hsl(217, 91%, 60%);
-  --chart-1: hsl(217, 70%, 48%);
+  --border: hsl(0, 0%, 55%);
+  --input: hsl(0, 0%, 60%);
+  --ring: hsl(221, 65%, 45%);
+  --chart-1: hsl(221, 70%, 48%);
   --chart-2: hsl(199, 75%, 45%);
   --chart-3: hsl(173, 50%, 38%);
   --chart-4: hsl(142, 60%, 42%);
   --chart-5: hsl(79, 60%, 40%);
-  --sidebar: hsl(0, 0%, 98%);
-  --sidebar-foreground: hsl(0, 0%, 0%);
-  --sidebar-primary: hsl(217, 70%, 48%);
+  --sidebar: hsl(0, 0%, 80%);
+  --sidebar-foreground: hsl(0, 0%, 15%);
+  --sidebar-primary: hsl(221, 70%, 48%);
   --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(0, 0%, 96%);
-  --sidebar-accent-foreground: hsl(0, 0%, 0%);
-  --sidebar-border: hsl(0, 0%, 90%);
-  --sidebar-ring: hsl(217, 70%, 48%);
+  --sidebar-accent: hsl(240, 8%, 90%);
+  --sidebar-accent-foreground: hsl(240, 8%, 25%);
+  --sidebar-border: hsl(240, 8%, 85%);
+  --sidebar-ring: hsl(221, 70%, 48%);
 }
 
+.ocean {
+  /* Ocean Theme - Deep Sea Blue with Vibrant Accents */
+  --background: hsl(210, 60%, 6%);
+  --foreground: hsl(195, 100%, 95%);
+  --card: hsl(210, 55%, 10%);
+  --card-foreground: hsl(195, 100%, 95%);
+  --popover: hsl(210, 55%, 11%);
+  --popover-foreground: hsl(195, 100%, 95%);
+  --primary: hsl(200, 100%, 60%);
+  --primary-foreground: hsl(210, 60%, 8%);
+  --secondary: hsl(210, 50%, 16%);
+  --secondary-foreground: hsl(195, 100%, 95%);
+  --muted: hsl(210, 45%, 20%);
+  --muted-foreground: hsl(195, 80%, 75%);
+  --accent: hsl(200, 95%, 22%);
+  --accent-foreground: hsl(195, 100%, 95%);
+  --destructive: hsl(0, 75%, 55%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(207, 45%, 28%);
+  --input: hsl(210, 50%, 16%);
+  --ring: hsl(200, 100%, 60%);
+  --chart-1: hsl(200, 100%, 60%);
+  --chart-2: hsl(180, 95%, 55%);
+  --chart-3: hsl(160, 80%, 50%);
+  --chart-4: hsl(140, 75%, 48%);
+  --chart-5: hsl(85, 75%, 50%);
+  --sidebar: hsl(210, 65%, 8%);
+  --sidebar-foreground: hsl(195, 100%, 95%);
+  --sidebar-primary: hsl(200, 100%, 60%);
+  --sidebar-primary-foreground: hsl(210, 60%, 8%);
+  --sidebar-accent: hsl(200, 95%, 22%);
+  --sidebar-accent-foreground: hsl(195, 100%, 95%);
+  --sidebar-border: hsl(207, 45%, 28%);
+  --sidebar-ring: hsl(200, 100%, 60%);
+}
+
+/* Keep dark class for backward compatibility */
 .dark {
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(0, 0%, 100%);
@@ -764,9 +801,9 @@ html.dark tfoot tr th .footer-total-blue {
 .pagination-button {
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.8);
-  border-color: hsl(var(--border));
-  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border-color: rgb(200, 200, 200);
+  color: rgb(0, 0, 0);
   font-weight: 500;
 }
 
@@ -777,7 +814,7 @@ html.dark tfoot tr th .footer-total-blue {
 }
 
 .pagination-button.page-number {
-  color: hsl(var(--muted-foreground));
+  color: rgb(113, 113, 122);
 }
 
 .dark .pagination-button.page-number {
@@ -785,9 +822,9 @@ html.dark tfoot tr th .footer-total-blue {
 }
 
 .pagination-button:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.95);
-  border-color: hsl(var(--border));
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgb(100, 100, 100);
 }
 
 .dark .pagination-button:hover {
@@ -797,15 +834,19 @@ html.dark tfoot tr th .footer-total-blue {
 }
 
 .pagination-button.active {
-  background: rgba(255, 255, 255, 0.95);
-  color: hsl(var(--foreground));
+  /* Same background as normal button */
+  background: transparent;
+  color: rgb(0, 0, 0);
   font-weight: 600;
+  /* Slow blinking border animation */
   animation: pagination-border-blink 2s ease-in-out infinite;
 }
 
 .dark .pagination-button.active {
+  /* Same background as normal button in dark mode */
   background: transparent;
   color: rgb(147, 197, 253);
+  /* Slow blinking border animation */
   animation: pagination-border-blink-dark 2s ease-in-out infinite;
 }
 

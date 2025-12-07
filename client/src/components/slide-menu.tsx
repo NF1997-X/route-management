@@ -16,7 +16,8 @@ import {
   Layout,
   Palette,
   Sparkles,
-  DoorOpen
+  DoorOpen,
+  Waves
 } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -37,7 +38,7 @@ interface SlideMenuProps {
   onShowHelp?: () => void;
   onBulkColorEdit?: () => void;
   theme?: string;
-  onSetTheme?: (theme: 'dark' | 'light') => void;
+  onSetTheme?: (theme: 'dark' | 'light' | 'ocean') => void;
 }
 
 export function SlideMenu({
@@ -78,7 +79,7 @@ export function SlideMenu({
       
       {/* Menu Panel - iPhone Paste Style */}
       <div className="fixed top-[72px] right-3 z-[110] w-[280px] transition-all duration-300 ease-out animate-in slide-in-from-right-2 zoom-in-95">
-        <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-[16px] shadow-md border border-black/5 dark:border-white/10 overflow-hidden">
+        <div className="bg-gray-200/95 dark:bg-gray-900/95 ocean:bg-blue-950/95 backdrop-blur-xl rounded-[16px] shadow-md border border-black/5 dark:border-white/10 ocean:border-cyan-500/20 overflow-hidden">
           <div className="max-h-[400px] overflow-y-auto py-1">
             {/* Primary Actions */}
             {editMode ? (
@@ -273,6 +274,21 @@ export function SlideMenu({
                   <Sun className="w-4 h-4 text-gray-700 dark:text-gray-200" />
                   <span className="text-[11px] font-medium text-gray-700 dark:text-gray-200">Light</span>
                 </button>
+                
+                {/* Ocean theme - only show in edit mode */}
+                {editMode && (
+                  <button
+                    onClick={() => handleItemClick(() => onSetTheme?.('ocean'))}
+                    className={`flex-1 flex flex-col items-center gap-1.5 px-3 py-2.5 rounded-lg transition-all duration-200 ease-out hover:scale-105 active:scale-95 ${
+                      theme === 'ocean' 
+                        ? 'bg-blue-900/30 ring-2 ring-blue-500' 
+                        : 'bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    <Waves className="w-4 h-4 text-gray-700 dark:text-gray-200" />
+                    <span className="text-[11px] font-medium text-gray-700 dark:text-gray-200">Ocean</span>
+                  </button>
+                )}
               </div>
             </div>
 

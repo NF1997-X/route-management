@@ -101,7 +101,7 @@ export function Navigation({ editMode, onEditModeRequest, onShowCustomization, o
             variant="outline"
             size="sm"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="relative bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-300/60 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-400/70 dark:hover:border-gray-600/60 hover:bg-gray-50 dark:hover:bg-gray-900 h-10 px-4 rounded-[14px] transition-all duration-300 ease-out hover:scale-105 active:scale-95 group"
+            className="relative bg-gray-200/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-300/70 dark:hover:border-gray-600/60 hover:bg-gray-300 dark:hover:bg-gray-900 h-10 px-4 rounded-[14px] transition-all duration-300 ease-out hover:scale-105 active:scale-95 group"
             data-testid="button-main-menu"
             title="Menu"
           >
@@ -112,7 +112,7 @@ export function Navigation({ editMode, onEditModeRequest, onShowCustomization, o
         </div>
 
         {/* Dropdown Menu */}
-        <div className={`absolute top-full right-6 mt-3 w-56 bg-white dark:bg-black/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl p-2 shadow-md max-h-[500px] overflow-y-auto transition-all duration-300 ease-out ${
+        <div className={`absolute top-full right-6 mt-3 w-56 bg-gray-200 dark:bg-black/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-xl p-2 shadow-md max-h-[500px] overflow-y-auto transition-all duration-300 ease-out ${
           menuOpen 
             ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' 
             : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'

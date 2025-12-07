@@ -321,7 +321,7 @@ export default function CustomTableList() {
           </div>
         </div>
       </nav>
-      <main className="fixed inset-0 bg-gray-100 dark:bg-black pt-[72px] pb-24 overflow-y-auto">
+      <main className="fixed inset-0 bg-gray-300 dark:bg-black pt-[72px] pb-24 overflow-y-auto">
         <div className="w-full flex justify-center mt-[5%]">
         <div className="max-w-3xl w-full px-6">
         {/* Action Bar */}
@@ -344,7 +344,7 @@ export default function CustomTableList() {
         </div>
 
         {/* Location Selection Table */}
-        <div className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl overflow-hidden mb-8 w-full max-w-5xl">
+        <div className="bg-gray-200/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl overflow-hidden mb-8">
           {/* Header with Search */}
           <div className="p-6 pb-4 border-b border-gray-300 dark:border-white/10">
             <h2 className="text-sm font-semibold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
@@ -355,9 +355,9 @@ export default function CustomTableList() {
                 placeholder="Search locations..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="max-w-sm bg-white dark:bg-black/20 border-gray-300 dark:border-white/20 text-sm h-8 shadow-sm"
+                className="max-w-sm bg-gray-100 dark:bg-black/20 border-gray-300 dark:border-white/20 text-sm h-8 shadow-sm"
               />
-              <div className="text-xs text-gray-600 dark:text-gray-400 flex items-center px-3 bg-white dark:bg-black/20 rounded-md border border-gray-300 dark:border-white/20 shadow-sm font-medium">
+              <div className="text-xs text-gray-600 dark:text-gray-400 flex items-center px-3 bg-gray-100 dark:bg-black/20 rounded-md border border-gray-300 dark:border-white/20 shadow-sm font-medium">
                 {selectedRows.size} selected
               </div>
             </div>
@@ -441,7 +441,7 @@ export default function CustomTableList() {
 
         {/* Existing Custom Tables */}
         <div className="flex justify-center w-full">
-          <div className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl p-6 w-full max-w-3xl">
+          <div className="bg-gray-200/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl p-6 w-full max-w-3xl">
             <h6 className="font-semibold mb-6 text-gray-900 dark:text-white text-center" style={{ fontSize: '14px' }}>📋 My Custom Tables</h6>
             {customTables.length === 0 ? (
               <p className="text-center text-gray-600 dark:text-gray-400 py-8">
@@ -534,14 +534,14 @@ export default function CustomTableList() {
         {/* Create Table Dialog */}
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogContent 
-          className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl"
+          className="bg-gray-200/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl"
           style={{
             maxHeight: 'min(80vh, calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 40px))',
             touchAction: 'pan-y',
           }}
         >
           <div 
-            className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-white/60 via-white/40 to-white/50 dark:from-black/40 dark:via-black/20 dark:to-black/30 border-0 shadow-inner" 
+            className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-gray-200/60 via-gray-200/40 to-gray-200/50 dark:from-black/40 dark:via-black/20 dark:to-black/30 border-0 shadow-inner" 
             style={{
               backdropFilter: 'blur(40px)',
               WebkitBackdropFilter: 'blur(40px)',
@@ -612,14 +612,14 @@ export default function CustomTableList() {
         }
       }}>
         <DialogContent 
-          className="bg-white/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl max-h-[80vh] overflow-y-auto"
+          className="bg-gray-200/90 dark:bg-black/30 backdrop-blur-2xl border-2 border-gray-300 dark:border-white/10 shadow-xl rounded-xl max-h-[80vh] overflow-y-auto"
           style={{
             maxHeight: 'min(80vh, calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 40px))',
             touchAction: 'pan-y',
           }}
         >
           <div 
-            className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-white/60 via-white/40 to-white/50 dark:from-black/40 dark:via-black/20 dark:to-black/30 border-0 shadow-inner" 
+            className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-gray-200/60 via-gray-200/40 to-gray-200/50 dark:from-black/40 dark:via-black/20 dark:to-black/30 border-0 shadow-inner" 
             style={{
               backdropFilter: 'blur(40px)',
               WebkitBackdropFilter: 'blur(40px)',

@@ -146,7 +146,7 @@ function MobileTooltip({ content, children, showBelow = false }: MobileTooltipPr
         <div 
           className={`absolute left-0 z-[100] pointer-events-none ${showBelow ? 'top-full mt-2' : 'bottom-full mb-2'}`}
         >
-          <div className="px-3 py-2 text-xs bg-popover text-popover-foreground rounded-lg shadow-md whitespace-nowrap border border-border">
+          <div className="px-3 py-2 text-xs bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-md whitespace-nowrap border border-gray-700">
             {content}
           </div>
           <div className={`absolute left-4 w-0 h-0 border-4 border-transparent ${showBelow ? 'bottom-full border-b-gray-900 dark:border-b-gray-800' : 'top-full border-t-gray-900 dark:border-t-gray-800'}`} />
@@ -778,16 +778,16 @@ export function DataTable({
 
   return (
     <div
-      className="border border-gray-400 dark:border-[#36454F] shadow-md table-container my-10 rounded-2xl overflow-hidden bg-card"
+      className="border border-gray-600 dark:border-gray-800/60 shadow-md shadow-black/10 dark:shadow-black/30 table-container my-10 rounded-2xl overflow-hidden bg-white dark:bg-gray-900/90"
       data-testid="data-table"
     >
       {/* Single Row: Filter/Sort/Search + Action Buttons */}
-      <div className="flex justify-between items-center px-6 py-3 border-b border-border bg-gray-400 dark:bg-transparent shadow-sm transition-all duration-500">
+      <div className="flex justify-between items-center px-6 py-3 border-b border-gray-600 dark:border-gray-800/60 bg-gray-800 dark:bg-gray-950/50 shadow-sm transition-all duration-500">
         {/* Left Side: Sort, Filter, and Action Buttons */}
         <div className="flex items-center gap-2 flex-shrink-0">
           {/* Custom Toolbar Content */}
           {customToolbarContent && (
-            <div className="mr-4 border-r border-border pr-4">
+            <div className="mr-4 border-r border-gray-600 dark:border-blue-500/20 pr-4">
               {customToolbarContent}
             </div>
           )}
@@ -797,20 +797,20 @@ export function DataTable({
             <PopoverTrigger asChild>
               <Button 
                 variant="outline" 
-                className="h-8 w-8 p-0 pagination-button rounded-lg border border-border"
+                className="h-8 w-8 p-0 pagination-button rounded-lg"
                 data-testid="sort-trigger"
               >
                 {sortState ? (
-                  sortState.direction === 'asc' ? <ArrowUp className="w-4 h-4 text-muted-foreground" /> : <ArrowDown className="w-4 h-4 text-muted-foreground" />
+                  sortState.direction === 'asc' ? <ArrowUp className="w-4 h-4 text-gray-400 dark:text-current" /> : <ArrowDown className="w-4 h-4 text-gray-400 dark:text-current" />
                 ) : (
-                  <ArrowUpDown className="w-4 h-4 opacity-50 text-muted-foreground" />
+                  <ArrowUpDown className="w-4 h-4 opacity-50 text-gray-400 dark:text-current" />
                 )}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-52 p-0" align="start">
               <div className="p-3 btn-glass rounded-lg">
                 <h4 className="font-medium text-sm mb-3 pb-2 border-b border-border/20 flex items-center gap-2">
-                  <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground" />
+                  <ArrowUpDown className="w-3.5 h-3.5 text-gray-400 dark:text-blue-400" />
                   Sort By
                 </h4>
                 <div className="space-y-1.5 text-sm">
@@ -915,18 +915,16 @@ export function DataTable({
           <div className="w-auto">
             <Popover>
               <PopoverTrigger asChild>
-                <MobileTooltip content="Filter Routes & Deliveries">
-                  <Button 
-                    variant="outline" 
-                    className="h-8 w-8 p-0 pagination-button rounded-lg relative border border-border" 
-                    data-testid="combined-filter-trigger"
-                  >
-                    <Filter className="w-4 h-4 text-muted-foreground" />
-                    {(filterValue.length > 0 || deliveryFilterValue.length > 0) && (
-                      <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full w-2.5 h-2.5 border-2 border-background z-50"></span>
-                    )}
-                  </Button>
-                </MobileTooltip>
+                <Button 
+                  variant="outline" 
+                  className="h-8 w-8 p-0 pagination-button rounded-lg relative" 
+                  data-testid="combined-filter-trigger"
+                >
+                  <Filter className="w-4 h-4 text-gray-400 dark:text-current" />
+                  {(filterValue.length > 0 || deliveryFilterValue.length > 0) && (
+                    <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 dark:bg-red-400 rounded-full w-2.5 h-2.5 border-2 border-white dark:border-gray-900 z-50"></span>
+                  )}
+                </Button>
               </PopoverTrigger>
             <PopoverContent className="w-64 p-0" align="start">
               <div className="p-3 btn-glass rounded-lg">
@@ -936,7 +934,7 @@ export function DataTable({
                     <div className="space-y-1.5 text-sm">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-medium text-sm flex items-center gap-2">
-                          <MapPin className="w-3 h-3 text-muted-foreground" />
+                          <MapPin className="w-3 h-3 text-gray-400 dark:text-accent" />
                           Routes ({filterValue.length} selected)
                         </h4>
                         {filterValue.length > 0 && (
@@ -971,7 +969,7 @@ export function DataTable({
                 <div className="space-y-1.5 text-sm">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-medium text-sm flex items-center gap-2">
-                      <Filter className="w-3 h-3 text-muted-foreground" />
+                      <Filter className="w-3 h-3 text-gray-400 dark:text-orange-500" />
                       Hide Deliveries ({deliveryFilterValue.length} hidden)
                     </h4>
                     {deliveryFilterValue.length > 0 && (
@@ -1009,11 +1007,11 @@ export function DataTable({
                   onClick={onShowCustomization}
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 pagination-button rounded-lg border border-border"
+                  className="h-8 w-8 p-0 pagination-button rounded-lg"
                   title="Customize Columns"
                   data-testid="button-customize-columns"
                 >
-                  <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-current" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </Button>
@@ -1023,11 +1021,11 @@ export function DataTable({
                   onClick={onOptimizeRoute}
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 pagination-button rounded-lg border border-border"
+                  className="h-8 w-8 p-0 pagination-button rounded-lg"
                   title="Route Optimization"
                   data-testid="button-optimize-route"
                 >
-                  <Route className="w-3.5 h-3.5 text-muted-foreground" />
+                  <Route className="w-3.5 h-3.5 text-gray-400 dark:text-current" />
                 </Button>
               )}
               {onShareTable && !hideShareButton && (
@@ -1035,11 +1033,11 @@ export function DataTable({
                   onClick={onShareTable}
                   variant="outline"
                   size="sm"
-                  className="h-8 w-8 p-0 pagination-button rounded-lg border border-border"
+                  className="h-8 w-8 p-0 pagination-button rounded-lg"
                   title="Share Table"
                   data-testid="button-share-table"
                 >
-                  <Share2 className="w-3.5 h-3.5 text-muted-foreground" />
+                  <Share2 className="w-3.5 h-3.5 text-gray-400 dark:text-current" />
                 </Button>
               )}
             </>
@@ -1072,9 +1070,9 @@ export function DataTable({
       </div>
       {/* Active Filters Display */}
       {(searchTerm || filterValue.length > 0 || deliveryFilterValue.length > 0) && (
-        <div className="px-6 py-2 border-b border-border bg-muted">
+        <div className="px-6 py-2 border-b border-gray-600 dark:border-gray-800/60 bg-gray-800 dark:bg-gray-950/50">
           <div className="flex flex-wrap items-center gap-1">
-            <span className="text-muted-foreground font-semibold text-xs">Active:</span>
+            <span className="text-gray-400 dark:text-gray-300 font-semibold text-xs">Active:</span>
             {searchTerm && (
               <div className="flex items-center gap-0.5 px-2 py-0.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs">
                 <Search className="w-2.5 h-2.5" />
@@ -1103,7 +1101,7 @@ export function DataTable({
                   ) : (
                     <Filter className="w-2.5 h-2.5" />
                   )}
-                  <span className="text-[8px] font-semibold text-muted-foreground">{route}</span>
+                  <span className="text-[8px] font-semibold text-gray-400 dark:text-gray-500">{route}</span>
                 </button>
               );
             })}
@@ -1125,7 +1123,7 @@ export function DataTable({
               data-testid="clear-all-filters"
               aria-label="Clear all filters"
             >
-              <X className="w-2.5 h-2.5 text-muted-foreground" />
+              <X className="w-2.5 h-2.5 text-gray-500 dark:text-red-400" />
               <span className="text-[8px] font-semibold text-red-600 dark:text-red-400">Clear All</span>
             </button>
             <div className="ml-auto text-muted-foreground text-xs">
@@ -1136,11 +1134,11 @@ export function DataTable({
       )}
       <div className="w-full">
         <DragDropContext onDragEnd={handleDragEnd}>
-          <div className="border border-border overflow-hidden flex flex-col">
+          <div className="border border-gray-600 dark:border-gray-800/40 overflow-hidden flex flex-col">
             {/* Scrollable Container for Header, Body, Footer */}
             <div className="overflow-x-auto overflow-y-auto max-h-[700px]">
               <Table className="min-w-full">
-                <TableHeader className="sticky top-0 z-20 [&_tr]:border-b [&_tr]:border-border bg-gray-300 dark:bg-gray-800">
+                <TableHeader className="sticky top-0 z-20 [&_tr]:border-b [&_tr]:border-gray-600 dark:[&_tr]:border-blue-500/20 shadow-[inset_0_-2px_4px_rgba(50,50,50,0.3)] dark:shadow-[inset_0_-2px_4px_rgba(0,0,0,0.3)] bg-gray-700 dark:bg-gray-800">
               <Droppable
                 droppableId="columns"
                 direction="horizontal"
@@ -1162,7 +1160,7 @@ export function DataTable({
                           <TableHead
                             ref={provided.innerRef}
                             {...provided.draggableProps}
-                            className="px-4 py-2 text-center table-header-footer-12px font-semibold tracking-wide sticky top-0 whitespace-nowrap border-transparent text-foreground"
+                            className="px-4 py-2 text-center table-header-footer-12px font-semibold tracking-wide sticky top-0 whitespace-nowrap border-transparent text-gray-300 dark:text-blue-300 [text-shadow:_0_1px_2px_rgb(100_100_100_/_0.4)] dark:[text-shadow:_0_1px_2px_rgb(0_0_0_/_0.3)]"
                             style={{
                               textAlign: "center",
                               textDecoration: "normal",
@@ -1220,9 +1218,9 @@ export function DataTable({
                         (_, index) => (
                           <tr
                             key={`skeleton-${index}`}
-                            className={`skeleton-row border-b border-border shadow-md ${
+                            className={`skeleton-row border-b border-gray-200/20 dark:border-white/5 shadow-md dark:shadow-none ${
                               index % 2 === 0 
-                                ? 'bg-card' 
+                                ? 'bg-white/80 dark:bg-gray-900/50' 
                                 : 'bg-blue-50/50 dark:bg-blue-900/20'
                             } transition-opacity duration-200`}
                           >
@@ -1272,23 +1270,23 @@ export function DataTable({
                                   // Main page (NOT shared view): only dim if power off (inactive)
                                   if (!isSharedView) {
                                     if (row.active === false) {
-                                      return "bg-muted opacity-50";
+                                      return "bg-gray-400 dark:bg-gray-800 opacity-50";
                                     } else {
-                                      return "bg-card";
+                                      return "bg-gray-200 dark:bg-gray-900";
                                     }
                                   }
                                   
                                   // Shared view & custom table: apply schedule-based styling
                                   const status = getScheduleStatus(row);
                                   if (status === 'inactive') {
-                                    return "bg-muted opacity-50";
+                                    return "bg-gray-400 dark:bg-gray-800 opacity-50";
                                   } else if (status === 'off-schedule') {
-                                    return "bg-card opacity-60";
+                                    return "bg-gray-200 dark:bg-gray-900 opacity-60";
                                   } else {
-                                    return "bg-card";
+                                    return "bg-gray-200 dark:bg-gray-900";
                                   }
                                 })()
-                              } hover:bg-accent hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 border-b border-border ${
+                              } hover:bg-slate-50 hover:shadow-md dark:hover:bg-blue-800/20 dark:hover:shadow-[0_2px_12px_rgba(59,130,246,0.25)] transition-all duration-300 hover:-translate-y-0.5 border-b border-gray-600 dark:border-blue-700/20 ${
                                 snapshot.isDragging ? "drag-elevate" : ""
                               }`}
                               data-testid={`table-row-${row.id}`}
@@ -1513,7 +1511,7 @@ export function DataTable({
                                           className={`bg-transparent border-transparent hover:bg-transparent hover:border-transparent ${
                                             row.images && row.images.length > 0
                                               ? "text-purple-500 dark:text-purple-400 hover:text-purple-600 dark:hover:text-purple-300"
-                                              : "text-muted-foreground"
+                                              : "text-gray-400 dark:text-gray-600"
                                           }`}
                                           onClick={() => {
                                             if (row.images && row.images.length > 0) {
